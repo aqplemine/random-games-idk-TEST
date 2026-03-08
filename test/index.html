@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Game Paradise - Home</title>
@@ -167,14 +167,14 @@
     <input 
         id="searchInput" 
         type="search" 
-        placeholder="Zoek games..." 
+        placeholder="Search games..." 
         oninput="renderGames()"
     >
   </div>
 
   <div class="sidebar-menu">
-      <div class="category-btn active" data-cat="all" onclick="setFilter('all', this); toggleSidebar(false)">Alle games</div>
-      <div class="category-btn" data-cat="favorites" onclick="setFilter('favorites', this); toggleSidebar(false)">⭐ Favorieten</div>
+      <div class="category-btn active" data-cat="all" onclick="setFilter('all', this); toggleSidebar(false)">All games</div>
+      <div class="category-btn" data-cat="favorites" onclick="setFilter('favorites', this); toggleSidebar(false)">⭐ Favorites</div>
       <div style="height: 1px; background: #1e293b; margin: 10px 0;"></div>
       <div id="categoryList"></div>
   </div>
@@ -199,11 +199,11 @@
     <div class="topbar">
         <div class="title-container">
             <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-            <h2 id="sectionTitle" class="section-title">Alle Games</h2>
+            <h2 id="sectionTitle" class="section-title">All Games</h2>
         </div>
         <div>
             <button id="adminBtn" class="auth-btn admin-btn" style="display:none" onclick="location.href='admin.html'">Admin</button>
-            <button id="authBtn" class="auth-btn">Inloggen</button>
+            <button id="authBtn" class="auth-btn">Log in</button>
         </div>
     </div>
     <div id="gameGrid" class="game-grid">
@@ -216,32 +216,32 @@
 
 <div id="updatesModal" class="modal">
     <div class="modal-box" style="width: 500px; max-height: 80vh; overflow-y: auto;">
-        <h2 style="color: #facc15;">Laatste Updates</h2>
-        <div id="updatesList" style="margin-top: 20px;">Laden...</div>
-        <button onclick="document.getElementById('updatesModal').style.display='none'" style="background: transparent; color: var(--text-dim);">Sluiten</button>
+        <h2 style="color: #facc15;">Latest Updates</h2>
+        <div id="updatesList" style="margin-top: 20px;">Loading...</div>
+        <button onclick="document.getElementById('updatesModal').style.display='none'" style="background: transparent; color: var(--text-dim);">Close</button>
     </div>
 </div>
 
 <div id="loginModal" class="modal">
     <div class="modal-box">
-        <h2>Inloggen</h2>
-        <input id="emailInput" type="email" name="email" autocomplete="username" placeholder="E-mail">
-        <input id="passwordInput" type="password" name="password" autocomplete="current-password" placeholder="Wachtwoord">
+        <h2>Log in</h2>
+        <input id="emailInput" type="email" name="email" autocomplete="username" placeholder="Email">
+        <input id="passwordInput" type="password" name="password" autocomplete="current-password" placeholder="Password">
         
-        <button id="loginSubmit" style="background: var(--primary); color: white;">Inloggen</button>
-        <button id="registerSubmit" style="background: #16a34a; color: white;">Account aanvragen</button>
-        <button id="forgotPasswordSubmit" style="background: #334155; color: white;">Wachtwoord vergeten</button>
-        <button onclick="document.getElementById('loginModal').style.display='none'" style="background:transparent; color: var(--text-dim);">Annuleren</button>
+        <button id="loginSubmit" style="background: var(--primary); color: white;">Log in</button>
+        <button id="registerSubmit" style="background: #16a34a; color: white;">Create account</button>
+        <button id="forgotPasswordSubmit" style="background: #334155; color: white;">Forgot password</button>
+        <button onclick="document.getElementById('loginModal').style.display='none'" style="background:transparent; color: var(--text-dim);">Cancel</button>
     </div>
 </div>
 
 <div id="favModal" class="modal">
     <div class="modal-box">
         <div style="font-size: 40px; margin-bottom: 10px;">⭐</div>
-        <h2>Oeps, niet ingelogd!</h2>
-        <p style="color: #94a3b8; margin-bottom: 20px;">Je moet ingelogd zijn om favoriete games op te slaan.</p>
-        <button onclick="openLoginFromFav()" style="background: var(--primary); color: white;">Nu Inloggen</button>
-        <button onclick="document.getElementById('favModal').style.display='none'" style="background:transparent; color: var(--text-dim);">Laat maar</button>
+        <h2>Oops, you're not logged in!</h2>
+        <p style="color: #94a3b8; margin-bottom: 20px;">You need to be logged in to save favorite games.</p>
+        <button onclick="openLoginFromFav()" style="background: var(--primary); color: white;">Log in now</button>
+        <button onclick="document.getElementById('favModal').style.display='none'" style="background:transparent; color: var(--text-dim);">Maybe later</button>
     </div>
 </div>
 
@@ -249,26 +249,33 @@
     <div class="modal-box">
         <h2 id="infoTitle" style="color: var(--accent);">Game Info</h2>
         <p id="infoText" style="color: white; line-height: 1.6; margin: 20px 0; text-align: left;"></p>
-        <button onclick="document.getElementById('infoModal').style.display='none'" style="background: var(--primary); color: white;">Sluiten</button>
+        <button onclick="document.getElementById('infoModal').style.display='none'" style="background: var(--primary); color: white;">Close</button>
     </div>
 </div>
 
 <div id="registerModal" class="modal">
-    <div class="modal-box" style="width: 500px; max-height: 90vh;">
-        <iframe data-tally-src="https://tally.so/embed/yPYeEd?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="500" frameborder="0" title="Account aanvraag"></iframe>
-        <button onclick="document.getElementById('registerModal').style.display='none'" style="margin-top:20px; background: #1e293b; color: white;">Sluiten</button>
+    <div class="modal-box">
+        <h2>Create account</h2>
+        <p style="color:#94a3b8; margin-top:0;">Create a new account with your email and password.</p>
+        <input id="registerEmailInput" type="email" autocomplete="email" placeholder="Email">
+        <input id="registerPasswordInput" type="password" autocomplete="new-password" placeholder="Password (min. 6 characters)">
+        <button id="registerCreateBtn" style="background:#16a34a; color:white;">Create account</button>
+        <button onclick="document.getElementById('registerModal').style.display='none'" style="background:#1e293b; color:white;">Close</button>
     </div>
 </div>
 <div id="forgotPasswordModal" class="modal">
-    <div class="modal-box" style="width: 500px;">
-        <iframe data-tally-src="https://tally.so/embed/gDGQPM?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="424" frameborder="0" title="Wachtwoord vergeten"></iframe>
-        <button onclick="document.getElementById('forgotPasswordModal').style.display='none'" style="margin-top:20px; background: #1e293b; color: white;">Sluiten</button>
+    <div class="modal-box">
+        <h2>Reset password</h2>
+        <p style="color:#94a3b8; margin-top:0;">Enter your email address and we'll send you a password reset email.</p>
+        <input id="forgotEmailInput" type="email" autocomplete="email" placeholder="Email">
+        <button id="forgotSendBtn" style="background:#334155; color:white;">Send reset email</button>
+        <button onclick="document.getElementById('forgotPasswordModal').style.display='none'" style="background:#1e293b; color:white;">Close</button>
     </div>
 </div>
 <div id="supportModal" class="modal">
     <div class="modal-box" style="width: 500px;">
         <iframe data-tally-src="https://tally.so/embed/jaPkda?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" width="100%" height="424" frameborder="0" title="Support"></iframe>
-        <button onclick="document.getElementById('supportModal').style.display='none'" style="margin-top:20px; background: #1e293b; color: white;">Sluiten</button>
+        <button onclick="document.getElementById('supportModal').style.display='none'" style="margin-top:20px; background: #1e293b; color: white;">Close</button>
     </div>
 </div>
 <script src="https://tally.so/widgets/embed.js"></script>
@@ -286,12 +293,45 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-const ADMIN_EMAILS = ["someoeneheilig@gmail.com", "melle1337k@gmail.com"];
+const ADMIN_EMAILS = ["someoeneheilig@gmail.com", "melle1337k@gmail.com","banobe@denipl.com"];
 let currentUser = null;
 let favorites = {};
 let allGames = {};
 let currentFilter = "all";
 let gamesLoading = true;
+
+const CATEGORY_TRANSLATIONS = {
+    all: 'All Games',
+    actie: 'Action',
+    action: 'Action',
+    avontuur: 'Adventure',
+    adventure: 'Adventure',
+    race: 'Racing',
+    racing: 'Racing',
+    sport: 'Sports',
+    sports: 'Sports',
+    schieten: 'Shooter',
+    shooter: 'Shooter',
+    puzzel: 'Puzzle',
+    puzzle: 'Puzzle',
+    multiplayer: 'Multiplayer',
+    arcade: 'Arcade',
+    horror: 'Horror',
+    platform: 'Platformer',
+    platformer: 'Platformer',
+    simulatie: 'Simulation',
+    simulation: 'Simulation',
+    strategie: 'Strategy',
+    strategy: 'Strategy',
+    favorieten: 'Favorites',
+    favorites: 'Favorites'
+};
+
+function translateLabel(value) {
+    if (!value) return '';
+    const key = String(value).trim().toLowerCase();
+    return CATEGORY_TRANSLATIONS[key] || value;
+}
 
 // --- MOBIELE MENU FUNCTIE ---
 function toggleSidebar(forceOpen = null) {
@@ -320,13 +360,13 @@ function notify(msg, type = 'success') {
 auth.onAuthStateChanged(user => {
     currentUser = user;
     if (user) {
-        document.getElementById("authBtn").textContent = "Uitloggen";
+        document.getElementById("authBtn").textContent = "Log out";
         // Check of het een admin is, zo ja: laat knop zien
         document.getElementById("adminBtn").style.display = ADMIN_EMAILS.includes(user.email.toLowerCase()) ? "inline-block" : "none";
         loadFavorites();
         initChatBadge(); 
     } else {
-        document.getElementById("authBtn").textContent = "Inloggen";
+        document.getElementById("authBtn").textContent = "Log in";
         document.getElementById("adminBtn").style.display = "none";
         favorites = {};
         renderGames();
@@ -356,12 +396,12 @@ function openUpdatesModal() {
     db.collection("updates").orderBy("timestamp", "desc").limit(10).get().then(snap => {
         list.innerHTML = "";
         if(snap.empty) {
-            list.innerHTML = "Nog geen updates.";
+            list.innerHTML = "No updates yet.";
             return;
         }
         snap.forEach(doc => {
             const d = doc.data();
-            const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('nl-NL') : 'Onbekend';
+            const date = d.timestamp ? d.timestamp.toDate().toLocaleDateString('en-US') : 'Unknown';
             list.innerHTML += `
                 <div class="update-item">
                     <span class="update-date"> ${date}</span>
@@ -375,7 +415,7 @@ function openUpdatesModal() {
 
 document.getElementById("authBtn").onclick = () => {
     if (currentUser) {
-        auth.signOut().then(() => notify("Succesvol uitgelogd!"));
+        auth.signOut().then(() => notify("Logged out successfully!"));
     } else {
         document.getElementById("loginModal").style.display = "flex";
     }
@@ -390,18 +430,61 @@ document.getElementById("loginSubmit").onclick = () => {
     const email = document.getElementById("emailInput").value;
     const pass = document.getElementById("passwordInput").value;
     auth.signInWithEmailAndPassword(email, pass)
-    .then(() => { document.getElementById("loginModal").style.display = "none"; notify("✅ Ingelogd!"); })
-    .catch(() => notify("❌ Fout gegevens", "danger"));
+    .then(() => { document.getElementById("loginModal").style.display = "none"; notify("✅ Logged in!"); })
+    .catch(() => notify("❌ Invalid email or password", "danger"));
 };
 
 document.getElementById("registerSubmit").onclick = () => {
     document.getElementById("loginModal").style.display = "none";
     document.getElementById("registerModal").style.display = "flex";
+    document.getElementById("registerEmailInput").value = document.getElementById("emailInput").value.trim();
+};
+
+document.getElementById("registerCreateBtn").onclick = async () => {
+    const email = document.getElementById("registerEmailInput").value.trim();
+    const pass = document.getElementById("registerPasswordInput").value;
+
+    if (!email || !pass) {
+        notify("⚠️ Please enter both email and password.", "danger");
+        return;
+    }
+    if (pass.length < 6) {
+        notify("⚠️ Password must be at least 6 characters.", "danger");
+        return;
+    }
+
+    try {
+        await auth.createUserWithEmailAndPassword(email, pass);
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("registerPasswordInput").value = "";
+        notify("✅ Account created successfully!");
+    } catch (err) {
+        console.error(err);
+        notify(`❌ ${err.message}`, "danger");
+    }
 };
 
 document.getElementById("forgotPasswordSubmit").onclick = () => {
     document.getElementById("loginModal").style.display = "none";
     document.getElementById("forgotPasswordModal").style.display = "flex";
+    document.getElementById("forgotEmailInput").value = document.getElementById("emailInput").value.trim();
+};
+
+document.getElementById("forgotSendBtn").onclick = async () => {
+    const email = document.getElementById("forgotEmailInput").value.trim();
+    if (!email) {
+        notify("⚠️ Please enter your email address.", "danger");
+        return;
+    }
+
+    try {
+        await auth.sendPasswordResetEmail(email);
+        document.getElementById("forgotPasswordModal").style.display = "none";
+        notify("📩 Password reset email sent!");
+    } catch (err) {
+        console.error(err);
+        notify(`❌ ${err.message}`, "danger");
+    }
 };
 
 function loadGames() {
@@ -422,7 +505,7 @@ function loadCategories() {
         snap.forEach(doc => {
             const btn = document.createElement("div");
             btn.className = "category-btn";
-            btn.innerHTML = ` ${doc.data().name}`;
+            btn.innerHTML = ` ${translateLabel(doc.data().name || doc.id)}`;
             btn.onclick = () => {
                 setFilter(doc.id, btn);
                 toggleSidebar(false); // Sluit menu op mobiel na klik
@@ -450,8 +533,8 @@ function setFilter(cat, el) {
     document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
     el.classList.add('active');
     
-    let title = el.innerText.replace('⭐ ', '');
-    if(cat === 'all') title = "Alle Games";
+    let title = translateLabel(el.innerText.replace('⭐ ', ''));
+    if(cat === 'all') title = "All Games";
     document.getElementById("sectionTitle").textContent = title;
     
     renderGames();
@@ -461,7 +544,7 @@ function showInfo(id, e) {
     e.stopPropagation();
     const g = allGames[id];
     document.getElementById("infoTitle").innerText = g.title;
-    document.getElementById("infoText").innerText = g.infoText || "Geen informatie.";
+    document.getElementById("infoText").innerText = g.infoText || "No information available.";
     document.getElementById("infoModal").style.display = "flex";
 }
 
@@ -469,8 +552,8 @@ function toggleFavorite(id, e) {
     e.stopPropagation();
     if (!currentUser) { document.getElementById("favModal").style.display = "flex"; return; }
     const ref = db.collection("users").doc(currentUser.uid).collection("favorites").doc(id);
-    if (favorites[id]) ref.delete().then(() => notify("🗑️ Verwijderd uit favorieten", "danger"));
-    else ref.set(allGames[id]).then(() => notify("⭐ Toegevoegd aan favorieten"));
+    if (favorites[id]) ref.delete().then(() => notify("🗑️ Removed from favorites", "danger"));
+    else ref.set(allGames[id]).then(() => notify("⭐ Added to favorites"));
 }
 
 function renderGames() {
@@ -529,7 +612,7 @@ loadCategories();
 
 function checkChatAccess() {
     if (!currentUser) {
-        notify("❌ Je moet ingelogd zijn!");
+        notify("❌ You need to be logged in!");
         setTimeout(() => document.getElementById('loginModal').style.display = 'flex', 1000);
     } else {
         location.href = 'chat.html';
